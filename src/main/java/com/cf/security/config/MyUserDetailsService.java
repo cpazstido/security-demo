@@ -21,9 +21,16 @@ public class MyUserDetailsService implements UserDetailsService {
         logger.info("用户的用户名: {}", username);
         // TODO 根据用户名，查找到对应的密码，与权限
 
+        User user = null;
         // 封装用户信息，并返回。参数分别是：用户名，密码，用户权限
-        User user = new User(username, "123456",
-                AuthorityUtils.commaSeparatedStringToAuthorityList("admin"));
+        if(username.compareTo("admin")==0){
+            user = new User(username, "admin",
+                    AuthorityUtils.commaSeparatedStringToAuthorityList("admin"));
+        }else if(username.compareTo("demo")==0){
+            user = new User(username, "demo",
+                    AuthorityUtils.commaSeparatedStringToAuthorityList("demo"));
+        }
+
         return user;
     }
 }
