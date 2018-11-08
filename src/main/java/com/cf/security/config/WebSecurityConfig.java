@@ -18,16 +18,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin().loginPage("/login1")
                 .and()
                 .authorizeRequests()
-                .antMatchers("/login").permitAll()
+                .antMatchers("/login","/qrCode/**","/getCode/**").permitAll()
+                .anyRequest().authenticated()
                 .and()
                 .exceptionHandling().authenticationEntryPoint(new UnauthorizedEntryPoint())
                 .accessDeniedHandler(accessDeniedHandler)
         ;
 
         //url权限验证
-        ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry registry = http.authorizeRequests();
-        registry.anyRequest()
-                .access("@permissionService.hasPermission(request,authentication)");
+//        ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry registry = http.authorizeRequests();
+//        registry.anyRequest()
+//                .access("@permissionService.hasPermission(request,authentication)");
 
 //        //开启form登录，并设置需要拦截的地址
 //        http
