@@ -1,6 +1,9 @@
 security:
   basic:
     enabled: true
+  user:
+    name: admin
+    password: admin
 #是否关闭HttpBasicLogin。在没有配置WebSecurityConfigurerAdapter时，将弹框鉴权
 #在配置了WebSecurityConfigurerAdapter后，不管该开关是否开启都无作用
 spring:
