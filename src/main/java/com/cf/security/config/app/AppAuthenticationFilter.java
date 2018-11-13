@@ -5,6 +5,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.security.web.util.matcher.RequestMatcher;
+import org.springframework.util.StringUtils;
 import org.springframework.web.filter.GenericFilterBean;
 
 import javax.servlet.FilterChain;
@@ -33,7 +34,7 @@ public class AppAuthenticationFilter extends GenericFilterBean {
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) res;
         if(requiresAuthentication(request)){
-            if(request.getHeader("token").compareTo("123")==0){
+            if(!StringUtils.isEmpty(request.getHeader("token")) && request.getHeader("token").compareTo("123")==0){
                 //根据token从redis中获取用户信息
                 SimpleGrantedAuthority authority = new SimpleGrantedAuthority("admin");
                 User user = new User("admin","admin", Arrays.asList(authority));
