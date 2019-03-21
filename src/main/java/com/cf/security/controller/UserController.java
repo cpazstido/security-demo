@@ -46,7 +46,7 @@ public class UserController {
     }
 
     /**
-     * 返回一个uuid，前端根据这个uuid来获取二维码
+     * 前端访问二维码登录页面，在js中发起一个ajax请求，请求返回一个uuid，前端根据这个uuid来获取二维码
      * @return
      */
     @GetMapping("getUUID")
