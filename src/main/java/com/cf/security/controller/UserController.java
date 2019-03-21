@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.security.Principal;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 @RestController
 public class UserController {
@@ -42,6 +43,15 @@ public class UserController {
         Authentication user = SecurityContextHolder.getContext().getAuthentication();
         UUID_MAP.put(uuid,user);
         return user;
+    }
+
+    /**
+     * 返回一个uuid，前端根据这个uuid来获取二维码
+     * @return
+     */
+    @GetMapping("getUUID")
+    public String uuid(){
+        return UUID.randomUUID().toString();
     }
 
     /**
